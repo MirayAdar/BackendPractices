@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practise.Business", "Practise.Business\Practise.Business.csproj", "{A5C64B6C-B344-43E5-A6DC-A03A7411E24B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Practise.Business", "Practise.Business\Practise.Business.csproj", "{A5C64B6C-B344-43E5-A6DC-A03A7411E24B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practise.DataAccess", "Practise.DataAccess\Practise.DataAccess.csproj", "{8F02CF87-DDF2-4C62-BED1-96E7B07989AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Practise.DataAccess", "Practise.DataAccess\Practise.DataAccess.csproj", "{8F02CF87-DDF2-4C62-BED1-96E7B07989AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practise.Entities", "Practise.Entities\Practise.Entities.csproj", "{75A49D46-F984-4251-8CD5-9279DB4DCE68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Practise.Entities", "Practise.Entities\Practise.Entities.csproj", "{75A49D46-F984-4251-8CD5-9279DB4DCE68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practise.Core", "Practise.Core\Practise.Core.csproj", "{0D74D196-3C84-43DD-97FD-60D22750AB11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Practise.Core", "Practise.Core\Practise.Core.csproj", "{0D74D196-3C84-43DD-97FD-60D22750AB11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practise.WebAPI", "Practise.WebAPI\Practise.WebAPI.csproj", "{6152D605-83E6-4671-B89D-31C78992D516}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Practise.WebAPI", "Practise.WebAPI\Practise.WebAPI.csproj", "{6152D605-83E6-4671-B89D-31C78992D516}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

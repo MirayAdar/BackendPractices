@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Practise.Business.Abstract;
 using Practise.Entities.Concrete;
@@ -20,6 +21,7 @@ namespace Practise.WebAPI.Controllers
             _productService = productService;
         }
         [HttpGet("getall")]
+        [Authorize()] //Roles = "Product.List",Admin gibi değerler de verebilirdik parantez içinde
         public IActionResult GetList()
         {
             var result = _productService.GetList();
@@ -88,6 +90,19 @@ namespace Practise.WebAPI.Controllers
         public IActionResult UpdateProduct(Product product)
         {
             var result = _productService.Update(product);
+            if (result.Success)
+            {
+                return Ok(result.Message);
+            }
+            else
+            {
+                return BadRequest(result.Message);
+            }
+        }
+        [HttpPost("transaction")]
+        public IActionResult TransactionTest(Product product)
+        {
+            var result = _productService.TransactionalOperation(product);
             if (result.Success)
             {
                 return Ok(result.Message);

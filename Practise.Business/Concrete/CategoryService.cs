@@ -24,13 +24,13 @@ namespace Practise.Business.Concrete
         public IResult Add(Category category)
         {
             _categoryDal.Add(category);
-            return new SuccessResult(true, Messages.CategoryAdded);
+            return new SuccessResult( Messages.CategoryAdded);
         }
 
         public IResult Delete(Category category)
         {
             _categoryDal.Delete(category);
-            return new SuccessResult(true, Messages.CategoryDeleted);
+            return new SuccessResult( Messages.CategoryDeleted);
         }
 
         public IDataResult<Category> GetById(int id)
@@ -46,7 +46,7 @@ namespace Practise.Business.Concrete
         public IResult Update(Category category)
         {
             _categoryDal.Update(category);
-            return new SuccessResult(true, Messages.CategoryUpdated);
+            return new SuccessResult( Messages.CategoryUpdated);
         }
     }
 }

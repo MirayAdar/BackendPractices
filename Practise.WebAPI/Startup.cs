@@ -1,9 +1,12 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Practise.Core.Utilities.Security.Encryption;
+using Practise.Core.Utilities.Security.Jwt;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +26,25 @@ namespace Practise.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddRazorPages();
+            services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowOrigin",
+                    builder => builder.WithOrigins("http://localhost:4200")); //frontendin talep ettiði port
+            });
+            var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidIssuer = tokenOptions.Issuer,
+                ValidAudience = tokenOptions.Audience,
+                IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +56,7 @@ namespace Practise.WebAPI
             }
             else
             {
+                app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader()); // her türlü talebe cevap ver
                 app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
@@ -45,7 +67,10 @@ namespace Practise.WebAPI
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication(); //ortama giriþ anahtarý
+
+            app.UseAuthorization(); //ortamda neler yapabileceði
+            
 
             app.UseEndpoints(endpoints =>
             {
